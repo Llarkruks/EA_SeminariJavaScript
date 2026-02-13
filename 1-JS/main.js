@@ -100,3 +100,27 @@ console.log(typeof set, set); // object Set { 1, 2, 3 }
 let map = new Map();
 map.set("name", "Bob");
 console.log(typeof map, map); // object Map { 'name' => 'Bob' }
+
+
+// ------------------ const vs let ------------------
+
+// 1. CONST Primitive Data Types: Cannot be reassigned
+const pi = 3.14159;
+// pi = 3.14; // ❌ Uncaught TypeError: Assignment to constant variable.
+
+// 2. CONST Non-Primitive Data Types: A common trap!
+// The reference is constant, but the content is MUTABLE.
+const student = { name: "Andreu", age: 21 };
+student.age = 22; // ✅ This works! We are mutating the property, not the object reference.
+// student = { name: "Marc" }; // ❌ TypeError: We cannot point 'student' to a new object.
+
+// 3. LET: Use it for values that MUST change
+let counter = 0;
+counter += 1; // ✅ Reassignment allowed.
+
+// 4. BLOCK SCOPE: Both respect the block { }
+if (true) {
+    const blockScoped = "I only exist inside this IF";
+    let alsoBlockScoped = "Me too";
+}
+// console.log(blockScoped); // ❌ ReferenceError: Not defined outside the block.
